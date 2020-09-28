@@ -1,0 +1,52 @@
+//LintCode-1534.https://www.lintcode.com/problem/convert-binary-search-tree-to-sorted-doubly-linked-list/description
+
+/**
+ * Definition of TreeNode:
+ * class TreeNode {
+ * public:
+ *     int val;
+ *     TreeNode *left, *right;
+ *     TreeNode(int val) {
+ *         this->val = val;
+ *         this->left = this->right = NULL;
+ *     }
+ * }
+ */
+
+class Solution {
+public:
+    /**
+     * @param root: root of a tree
+     * @return: head node of a doubly linked list
+     */
+     TreeNode* head=NULL,*prev=NULL;
+    TreeNode * treeToDoublyList(TreeNode * root) 
+    {
+        create(root);
+        head->left=prev;
+        prev->right=head;
+        return head;
+    }
+    
+    
+    void create(TreeNode* root)
+    {
+        if(root==NULL)
+        return;
+        
+        create(root->left);
+        if(prev==NULL and root!=NULL)
+        {
+            head=root;
+        }
+        else
+        {
+            root->left=prev;
+            prev->right=root;
+        }
+         if(root!=NULL)
+        prev=root;
+        create(root->right);
+        
+    }
+};
