@@ -35,7 +35,7 @@ public:
         return;
         
         create(root->left);
-        if(prev==NULL and root!=NULL)
+        if(prev==NULL)
         {
             head=root;
         }
@@ -44,7 +44,7 @@ public:
             root->left=prev;
             prev->right=root;
         }
-         if(root!=NULL)
+       
         prev=root;
         create(root->right);
         
